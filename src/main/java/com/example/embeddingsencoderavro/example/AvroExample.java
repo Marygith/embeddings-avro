@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.example.embeddingsencoderavro.schema.AvroEmbedding;
 import org.apache.avro.file.DataFileReader;
@@ -19,6 +20,7 @@ public class AvroExample {
             long start = System.currentTimeMillis();
             List<AvroEmbedding> embeddings = new ArrayList<>();
             populateEmbeddings(embeddings, generator);
+            System.out.println(embeddings.stream().collect(Collectors.groupingBy(AvroEmbedding::getId)).entrySet().stream().filter(e -> e.getValue().size() > 1).count() );
             File file = new File(fileName);
 
             DatumWriter<AvroEmbedding> AvroEmbeddingDatumWriter = new SpecificDatumWriter<AvroEmbedding>(AvroEmbedding.class);

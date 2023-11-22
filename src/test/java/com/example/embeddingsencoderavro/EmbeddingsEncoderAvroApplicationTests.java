@@ -22,15 +22,16 @@ class EmbeddingsEncoderAvroApplicationTests {
     private final EmbeddingGenerator generator = new EmbeddingGenerator();
 
     private final String exampleFileName = PATH_TO_EMBEDDINGS_DIRECTORY + "embeddings.hasd";
-    private final String avroFileName = PATH_TO_EMBEDDINGS_DIRECTORY + "embeddings.avro";
+    private final String avroFileName = PATH_TO_EMBEDDINGS_DIRECTORY/* + "embeddings.avro"*/;
 
     private final EmbeddingsManager embeddingsManager = new EmbeddingsManager();
 
     @Test
     void evaluateMethodsWith_10000() {
-            generator.setEmbeddingsAMount(10000);
+        int n = 10000;
+            generator.setEmbeddingsAMount(n);
 //            long customMethodTime = Example.getTimeOfExperiment(generator, exampleFileName);
-            long avroMethodTime = AvroExample.getTimeOfExperiment(generator, avroFileName);
+            long avroMethodTime = AvroExample.getTimeOfExperiment(generator, avroFileName + "//" + n + "//" + "embeddings.avro");
 //            assertTrue(customMethodTime != -1);
             assertTrue(avroMethodTime != -1);
             System.out.println("Avro method was completed in " + avroMethodTime + " millis");
@@ -41,7 +42,7 @@ class EmbeddingsEncoderAvroApplicationTests {
     void save_100_EmbeddingsToDisk() {
         try {
 
-            File directory = new File(PATH_TO_EMBEDDINGS_DIRECTORY);
+            File directory = new File(PATH_TO_EMBEDDINGS_DIRECTORY );
             cleanDirectory(directory);
             assertTrue(checkThatDirectoryIsEmpty(PATH_TO_EMBEDDINGS_DIRECTORY));
             List<Embedding> embeddings = generator.generateNEmbeddings(100);

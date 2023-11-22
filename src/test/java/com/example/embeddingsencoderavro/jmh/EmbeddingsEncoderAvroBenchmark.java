@@ -7,12 +7,12 @@ import org.openjdk.jmh.annotations.*;
 
 import java.util.concurrent.TimeUnit;
 
-@Fork(value = 1, warmups = 2)
+@Fork(value = 1, warmups = 1)
 @State(Scope.Benchmark)
 @BenchmarkMode(Mode.Throughput)
 @OutputTimeUnit(TimeUnit.SECONDS)
-@Warmup(iterations = 5, time = 200, timeUnit = TimeUnit.MILLISECONDS)
-@Measurement(iterations = 20, time = 200, timeUnit = TimeUnit.MILLISECONDS)
+@Warmup(iterations = 1, time = 200, timeUnit = TimeUnit.MILLISECONDS)
+@Measurement(iterations = 1, time = 200, timeUnit = TimeUnit.MILLISECONDS)
 public class EmbeddingsEncoderAvroBenchmark {
 
 
