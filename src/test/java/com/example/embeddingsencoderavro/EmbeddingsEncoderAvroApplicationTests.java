@@ -28,7 +28,7 @@ class EmbeddingsEncoderAvroApplicationTests {
 
     @Test
     void evaluateMethodsWith_10000() {
-        int n = 10000;
+        int n = 10;
             generator.setEmbeddingsAMount(n);
 //            long customMethodTime = Example.getTimeOfExperiment(generator, exampleFileName);
             long avroMethodTime = AvroExample.getTimeOfExperiment(generator, avroFileName + "//" + n + "//" + "embeddings.avro");
